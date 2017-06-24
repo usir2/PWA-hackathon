@@ -2,6 +2,21 @@
   background-color: #605f5f;
   max-width: 100%;
   padding: 0.5rem;
+  .box{
+    .media{
+      .media-content{
+        .content{
+          .field{
+            .control{
+              .textarea{
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .card{
     .card-content{
       padding: 0.5rem;

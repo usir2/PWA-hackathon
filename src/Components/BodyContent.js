@@ -5,6 +5,45 @@ export default class BodyContent extends Component {
   render() {
     return (
       <div className="BodyContent">
+
+        <div className="box">
+          <article className="media">
+            <div className="media-left">
+              <figure className="image is-64x64">
+                <img src="http://bulma.io/images/placeholders/128x128.png" alt="Image" />
+              </figure>
+            </div>
+            <div className="media-content">
+              <div className="content">
+                <p>
+                  <strong>John Smith</strong> <small>:john@mail.com</small>
+                  <br />
+                  <div className="field">
+                    <p className="control">
+                      <input className="input" type="text" placeholder="Normal input" />
+                    </p>
+                  </div>
+                  <div className="field">
+                      <p className="control">
+                        <div contentEditable="true" className="textarea" placeholder="Normal textarea">
+                        <img src="http://bulma.io/images/placeholders/256x256.png" />
+                        </div>
+                      </p>
+                  </div>
+                </p>
+              </div>
+              <nav className="level is-mobile">
+                <div className="level-left">
+                  <a className="level-item">
+                    <i className="fa fa-camera-retro fa-2x" />
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </article>
+        </div>
+
+
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">

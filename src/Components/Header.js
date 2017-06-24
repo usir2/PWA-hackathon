@@ -6,7 +6,7 @@ export default class Header extends Component {
     return (
       <div className="Header">
         <nav className="nav hFirst">
-          
+
           <div className="nav-center">
             <a className="nav-item">
             EZ BOARD
@@ -17,13 +17,16 @@ export default class Header extends Component {
         <nav className="nav hSecond">
           <div className="nav-center">
             <a className="nav-item is-active  is-tab">
-              Home
+              <i className="fa fa-newspaper-o" aria-hidden="true" />
+              News
             </a>
             <a className="nav-item">
-              Documentation
+              <i className="fa fa-video-camera" aria-hidden="true"></i>
+              Movies
             </a>
             <a className="nav-item">
-              Blog
+              <i className="fa fa-gamepad" aria-hidden="true" />
+              Games
             </a>
           </div>
         </nav>

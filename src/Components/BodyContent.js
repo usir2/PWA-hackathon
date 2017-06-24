@@ -12,7 +12,7 @@ export default class BodyContent extends Component {
             </p>
             <a className="card-header-icon">
               <span className="icon">
-                <i className="fa fa-angle-down"></i>
+                <i className="fa fa-angle-down "></i>
               </span>
             </a>
           </header>
@@ -25,11 +25,11 @@ export default class BodyContent extends Component {
             </div>
           </div>
           <footer className="card-footer">
-            <a className="card-footer-item"><i className="fa fa-cloud-download" aria-hidden="true"></i>
+            <a className="card-footer-item"><i className="fa fa-cloud-download fa-2x" aria-hidden="true"></i>
             Save</a>
-            <a className="card-footer-item"><i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <a className="card-footer-item"><i className="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
             Edit</a>
-            <a className="card-footer-item"><i className="fa fa-window-close" aria-hidden="true"></i>
+            <a className="card-footer-item"><i className="fa fa-window-close fa-2x" aria-hidden="true"></i>
             Delete</a>
           </footer>
         </div>

@@ -2,5 +2,9 @@
   background-color: #605f5f;
   max-width: 100%;
   padding: 0.5rem; }
+  .BodyContent .card .card-content {
+    padding: 0.5rem; }
+    .BodyContent .card .card-content .content {
+      text-align: start; }
 
 /*# sourceMappingURL=BodyContent.css.map */

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Components/Header'
 import 'bulma/css/bulma.css'
+import 'font-awesome/css/font-awesome.css'
+
+import Header from './Components/Header'
+import BodyContent from './Components/BodyContent'
 
 
 class App extends Component {
@@ -9,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
       <Header />
-        hello hackathon :)
+      <BodyContent />
       </div>
     );
   }

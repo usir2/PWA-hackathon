@@ -1,0 +1,25 @@
+.Header{
+  .hFirst{
+    background-color: #00d1b2;
+    .nav-left{
+      .nav-item{
+        color: #00d1b2;
+      }
+    }
+    .nav-center{
+      .nav-item{
+        font-weight: bold;
+        font-size: xx-large;
+        color: #FFFFFF;
+      }
+    }
+  }
+  .hSecond{
+    background-color: #605f5f;
+    height: 2.25rem;
+    .nav-item{
+      color: #FFFFFF;
+
+    }
+  }
+}

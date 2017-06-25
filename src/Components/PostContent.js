@@ -27,9 +27,16 @@ class PostContent extends Component {
           console.log("data from post : ", obj)
 
         })
+        that.forceUpdate()
+
 		});
 
 /*    console.log("data from post : ", that.state.data.)*/
+
+  }
+  componentWillReceiveProps(nextProps){
+
+    //console.log("NEXT",)
 
   }
   setData(props){

@@ -1,16 +1,14 @@
 .Header{
   .hFirst{
     background-color: #00d1b2;
-    .nav-left{
-      .nav-item{
-        color: #00d1b2;
-      }
-    }
     .nav-center{
       .nav-item{
         font-weight: bold;
         font-size: xx-large;
         color: #FFFFFF;
+      }
+      .button{
+        margin: auto;
       }
     }
   }
@@ -20,6 +18,23 @@
     .nav-item{
       color: #FFFFFF;
 
+    }
+  }
+
+  .register-modal{
+    .modal-card-foot{
+        text-align: right;
+      .footButton{
+        width: 100%;
+      }
+    }
+  }
+  .login-modal{
+    .modal-card-foot{
+        text-align: right;
+      .footButton{
+        width: 100%;
+      }
     }
   }
 }

@@ -4,6 +4,8 @@
     font-weight: bold;
     font-size: xx-large;
     color: #FFFFFF; }
+  .Header .hFirst .nav-center .isNewUser {
+    margin: auto; }
   .Header .hFirst .nav-center .button {
     margin: auto; }
 .Header .hSecond {

@@ -11,6 +11,9 @@ export default class Header extends Component {
       emailFill: "help is-danger is-hidden",
       passwordFill:"help is-danger is-hidden",
       confirmPasswordFill:"help is-danger is-hidden",
+      confirmPasswordEq:"help is-danger is-hidden",
+      isNewUser:"isNewUser",
+      logoutBT:"button is-danger is-hidden",
       firebaseRegisMessage:"",
       emailRegis:"",
       passwordRegis:"",
@@ -21,8 +24,33 @@ export default class Header extends Component {
     this.emailRegisChange = this.emailRegisChange.bind(this);
     this.passwordRegisChange = this.passwordRegisChange.bind(this);
     this.confirmPassChange = this.confirmPassChange.bind(this);
+    this.emailLoginChange=this.emailLoginChange.bind(this);
+    this.passwordLoginChange =this.passwordLoginChange.bind(this);
     this.register = this.register.bind(this);
+    this.signOut = this.signOut.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.initApp = this.initApp.bind(this);
+    this.initApp()
+  }
+  initApp(){
+    const that = this;
+    firebase.auth().onAuthStateChanged(function(user){
 
+      if(user){
+        console.log("login as :",user)
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        that.setState({
+          isNewUser: "isNewUser is-hidden",
+          logoutBT:"button is-danger"
+        })
+      }
+    });
   }
 
   openRegisModal(){
@@ -74,17 +102,44 @@ export default class Header extends Component {
             var user = firebase.auth().currentUser;
             that.setState({
               modalRegis: "modal register-modal",
+              isNewUser: "isNewUser is-hidden",
+              logoutBT:"button is-danger"
             })
-            console.log(user)
+            //console.log(user)
         }).catch(function(error){
             that.setState({
               firebaseRegisMessage:error.message
             })
         })
-
-
-
       }
+  }
+
+  signIn(){
+    //console.log("SIGNIN : ", this.state.emailLogin)
+    const that = this;
+
+    firebase.auth().signInWithEmailAndPassword(this.state.emailLogin,this.state.passwordLogin).then(function() {
+        that.setState({
+          modalLogin: "modal login-modal",
+          isNewUser: "isNewUser is-hidden",
+          logoutBT:"button is-danger"
+        })
+    }).catch(function(error){
+        console.log(error.message)
+    })
+  }
+  signOut(){
+    const that = this;
+
+    firebase.auth().signOut().then(function() {
+      that.setState({
+        modalRegis: "modal register-modal",
+        isNewUser: "isNewUser",
+        logoutBT:"button is-danger is-hidden"
+      })
+    }).catch(function(error) {
+      // An error happened.
+    });
   }
 
   checkRegisEmail(){
@@ -126,8 +181,20 @@ export default class Header extends Component {
       this.setState({
         confirmPasswordFill: "help is-danger is-hidden",
       })
-      return true;
+      if(this.state.confirmPassword === this.state.passwordRegis){
+        this.setState({
+          confirmPasswordEq: "help is-danger is-hidden",
+        })
+        return true;
+      }
+      else{
+        this.setState({
+          confirmPasswordEq: "help is-danger",
+        })
+        return false;
+      }
     }
+
   }
 
 
@@ -142,10 +209,13 @@ export default class Header extends Component {
             EZ BOARD
 
             </a>
-            <a className="button is-warning" onClick={()=>that.openLoginModal()}>
-              <i className="fa fa-user-circle-o" aria-hidden="true"></i>LOGIN
+            <a className={this.state.isNewUser}>
+              <a className="button is-warning" onClick={()=>that.openLoginModal()}>
+                <i className="fa fa-user-circle-o" aria-hidden="true"></i>LOGIN
+              </a>
+              <a className="button" onClick={()=>that.openRegisModal()}>Register</a>
             </a>
-            <a className="button" onClick={()=>that.openRegisModal()}>Register</a>
+            <a className={this.state.logoutBT} onClick={that.signOut}>LOGOUT</a>
 
           </div>
 
@@ -204,6 +274,8 @@ export default class Header extends Component {
                   </span>
                 </p>
                 <p className={that.state.confirmPasswordFill}>Please fill Confirm password</p>
+                <p className={that.state.confirmPasswordEq}>Confirm-password not equeal Password</p>
+
                 <p className="help is-danger">{that.state.firebaseRegisMessage}</p>
 
 
@@ -251,7 +323,7 @@ export default class Header extends Component {
             </section>
             <footer className="modal-card-foot">
               <div className="footButton">
-                <button className="button is-success" >
+                <button className="button is-success" onClick={this.signIn} >
                   Login
                 </button>
               </div>

@@ -2,7 +2,8 @@
 const userDetailState={
   userKey:"xxx",
   email:"xxx@xxx.xxx",
-  picPath:"http://bulma.io/images/placeholders/128x128.png"
+  picPath:"http://bulma.io/images/placeholders/128x128.png",
+  dataPost:[]
 }
 
 export default function userReducer(state = userDetailState, action) {
@@ -12,7 +13,8 @@ export default function userReducer(state = userDetailState, action) {
         state={
           userKey:action.payload,
           email:state.email,
-          picPath:state.picPath
+          picPath:state.picPath,
+          dataPost:state.dataPost
         })
     }
     case "setEmail": {
@@ -20,7 +22,9 @@ export default function userReducer(state = userDetailState, action) {
         state={
           userKey:state.userKey,
           email:action.payload,
-          picPath:state.picPath
+          picPath:state.picPath,
+          dataPost:state.dataPost
+
         })
     }
     case "setPicPath": {
@@ -28,8 +32,19 @@ export default function userReducer(state = userDetailState, action) {
           state={
             userKey:state.userKey,
             email:state.email,
-            picPath:action.payload
+            picPath:action.payload,
+            dataPost:state.dataPost
+
           })
+    }
+    case "setDataPost": {
+      return(
+        state={
+          userKey:state.userKey,
+          email:state.email,
+          picPath:state.picPath,
+          dataPost:action.payload
+        })
     }
 
     default:

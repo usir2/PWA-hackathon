@@ -2,8 +2,16 @@
   background-color: #605f5f;
   max-width: 100%;
   padding: 0.5rem; }
+  .BodyContent .AddPost {
+    padding-bottom: 0.5rem; }
   .BodyContent .box .media .media-content .content .field .control .textarea {
     height: auto; }
+  .BodyContent .box .media .media-content .button {
+    width: 100%; }
+  .BodyContent .PostContent {
+    padding-top: 1rem; }
+    .BodyContent .PostContent .card {
+      margin-bottom: 0.5rem; }
   .BodyContent .card .card-content {
     padding: 0.5rem; }
     .BodyContent .card .card-content .content {

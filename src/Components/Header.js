@@ -41,7 +41,7 @@ class Header extends Component {
     firebase.auth().onAuthStateChanged(function(user){
 
       if(user){
-        console.log("login as :",user)
+        //console.log("login as :",user)
         var displayName = user.displayName;
         var email = user.email;
         var emailVerified = user.emailVerified;
@@ -133,7 +133,7 @@ class Header extends Component {
           logoutBT:"button is-danger"
         })
     }).catch(function(error){
-        console.log(error.message)
+        //console.log(error.message)
     })
   }
   signOut(){
@@ -235,7 +235,7 @@ class Header extends Component {
 
   render() {
     const that = this;
-    console.log("REDUX USER : ",this.props.user)
+    //console.log("REDUX USER : ",this.props.user)
     return (
       <div className="Header">
         <nav className="nav hFirst">

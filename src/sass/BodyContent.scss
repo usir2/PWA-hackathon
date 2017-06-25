@@ -2,6 +2,9 @@
   background-color: #605f5f;
   max-width: 100%;
   padding: 0.5rem;
+  .AddPost{
+    padding-bottom: 0.5rem;
+  }
   .box{
     .media{
       .media-content{
@@ -14,7 +17,16 @@
             }
           }
         }
+        .button{
+          width: 100%;
+        }
       }
+    }
+  }
+  .PostContent{
+    padding-top: 1rem;
+    .card{
+      margin-bottom: 0.5rem;
     }
   }
   .card{

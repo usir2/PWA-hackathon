@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../css/Header.css'
 import * as firebase from 'firebase';
+import {connect} from "react-redux";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -30,7 +31,10 @@ export default class Header extends Component {
     this.signOut = this.signOut.bind(this);
     this.signIn = this.signIn.bind(this);
     this.initApp = this.initApp.bind(this);
+    this.insertUserData=this.insertUserData.bind(this);
+    this.showUserData=this.showUserData.bind(this);
     this.initApp()
+
   }
   initApp(){
     const that = this;
@@ -49,6 +53,9 @@ export default class Header extends Component {
           isNewUser: "isNewUser is-hidden",
           logoutBT:"button is-danger"
         })
+        that.props.setEmail(email)
+        that.showUserData(email)
+
       }
     });
   }
@@ -105,7 +112,8 @@ export default class Header extends Component {
               isNewUser: "isNewUser is-hidden",
               logoutBT:"button is-danger"
             })
-            //console.log(user)
+            that.insertUserData(user.email)
+            //console.log("res :",user)
         }).catch(function(error){
             that.setState({
               firebaseRegisMessage:error.message
@@ -196,10 +204,38 @@ export default class Header extends Component {
     }
 
   }
+  insertUserData(email) {
+    var firebaseRef = firebase.database().ref("User/");
+    firebaseRef.push({
+      email: email,
+      connections: "",
+      lastOnline: "",
+      photo:"https://pwa-online-hackathon.firebaseapp.com/static/media/logo-nav.51d58f3e.png"
+
+    });
+
+  }
+
+  showUserData(email) {
+    const that = this;
+    var firebaseRef = firebase.database().ref("User");
+      firebaseRef.once('value').then(function(dataSnapshot) {
+        dataSnapshot.forEach(function(childSnapshot) {
+          var childKey = childSnapshot.key;
+          var childData = childSnapshot.val();
+
+          if(childData.email===email){
+            that.props.setUserKey(childKey)
+            that.props.setPicPath(childData.photo)
+          }
+        });
+      });
+  }
 
 
   render() {
     const that = this;
+    console.log("REDUX USER : ",this.props.user)
     return (
       <div className="Header">
         <nav className="nav hFirst">
@@ -335,3 +371,33 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStatetoProps=(state)=>{
+  return {
+    user:state.user
+  }
+}
+const mapDispatchtoProps=(dispatch)=>{
+  return {
+    setUserKey:(userKey)=>{
+      dispatch({
+        type:"setUserKey",
+        payload:userKey
+      })
+    },
+    setEmail:(email)=>{
+      dispatch({
+        type:"setEmail",
+        payload:email
+      })
+    },
+    setPicPath:(picPath)=>{
+      dispatch({
+        type:"setPicPath",
+        payload:picPath
+      })
+    }
+  }
+}
+
+export default connect(mapStatetoProps,mapDispatchtoProps)(Header)

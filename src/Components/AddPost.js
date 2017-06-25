@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 
-export default class AddPost extends Component {
+class AddPost extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      picPath:"http://bulma.io/images/placeholders/128x128.png"
+    };
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      picPath:nextProps.user.picPath
+    })
+    console.log("NEXT",)
+  }
+
+
   render() {
+    const emailSplit=this.props.user.email.split("@",1)
+    console.log(emailSplit)
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src="http://bulma.io/images/placeholders/128x128.png" alt="Image" />
+              <img src={this.state.picPath} alt="Image" />
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>John Smith</strong> <small>:john@mail.com</small>
+                <strong>{emailSplit}</strong> <small>{this.props.user.email}</small>
                 <br />
-                <div className="field">
-                  <p className="control">
-                    <input className="input" type="text" placeholder="Normal input" />
-                  </p>
-                </div>
                 <div className="field">
                     <p className="control">
                       <textarea  className="textarea" placeholder="Normal textarea">
@@ -41,3 +53,10 @@ export default class AddPost extends Component {
     )
   }
 }
+const mapStatetoProps=(state)=>{
+  return {
+    user:state.user
+  }
+}
+
+export default connect(mapStatetoProps)(AddPost)
